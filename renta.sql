@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-05-2023 a las 22:58:57
+-- Tiempo de generación: 26-05-2023 a las 23:03:05
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -166,7 +166,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"renta\",\"table\":\"vehiculo\"},{\"db\":\"renta\",\"table\":\"alquiler\"},{\"db\":\"renta\",\"table\":\"cliente\"},{\"db\":\"renta\",\"table\":\"seccion\"},{\"db\":\"renta\",\"table\":\"tipovehiculo\"},{\"db\":\"renta\",\"table\":\"usuario\"}]');
+('root', '[{\"db\":\"renta\",\"table\":\"alquiler\"},{\"db\":\"renta\",\"table\":\"entrega\"},{\"db\":\"renta\",\"table\":\"vehiculo\"},{\"db\":\"renta\",\"table\":\"seccion\"},{\"db\":\"renta\",\"table\":\"usuario\"},{\"db\":\"renta\",\"table\":\"cliente\"},{\"db\":\"renta\",\"table\":\"tipovehiculo\"}]');
 
 -- --------------------------------------------------------
 
@@ -273,7 +273,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2023-05-19 20:52:16', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"es\"}');
+('root', '2023-05-26 21:03:01', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"es\"}');
 
 -- --------------------------------------------------------
 
@@ -485,7 +485,7 @@ CREATE TABLE `alquiler` (
   `fechafin` date DEFAULT NULL,
   `dias` int(11) DEFAULT NULL,
   `total` double DEFAULT NULL,
-  `entregado` int(1) DEFAULT NULL,
+  `entregado` int(1) DEFAULT 1,
   `recibido` int(1) DEFAULT NULL,
   `estado` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -495,9 +495,9 @@ CREATE TABLE `alquiler` (
 --
 
 INSERT INTO `alquiler` (`idalquiler`, `usuario`, `idcliente`, `nombrecliente`, `fecha`, `idvehiculo`, `precio`, `fechaini`, `fechafin`, `dias`, `total`, `entregado`, `recibido`, `estado`) VALUES
-(12, 'wandy', 2, 'Aqfa', '2023-05-19', 64, 88, '2023-05-19', '2023-05-22', 4, 352, NULL, NULL, 1),
-(13, 'wandy', 1, 'Hola', '2023-05-19', 47, 55, '2023-05-19', '2023-05-22', 4, 220, NULL, NULL, 1),
-(14, 'wandy', 1, 'Hola', '2023-05-19', 47, 55, '2023-05-23', '2023-05-24', 2, 110, NULL, NULL, 1);
+(12, 'wandy', 2, 'Aqfa', '2023-05-19', 64, 88, '2023-05-19', '2023-05-22', 4, 352, 0, NULL, 1),
+(13, 'wandy', 1, 'Hola', '2023-05-19', 47, 55, '2023-05-19', '2023-05-22', 4, 220, 0, NULL, 1),
+(14, 'wandy', 1, 'Hola', '2023-05-19', 47, 55, '2023-05-23', '2023-05-24', 2, 110, 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -524,6 +524,31 @@ INSERT INTO `cliente` (`idcliente`, `nombre`, `correo`, `cedula`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `entrega`
+--
+
+CREATE TABLE `entrega` (
+  `identrega` int(30) NOT NULL,
+  `Idalquiler` int(30) NOT NULL,
+  `fechahora` datetime NOT NULL,
+  `persona_recibe` varchar(50) NOT NULL,
+  `cedula_persona` varchar(20) NOT NULL,
+  `kilometraje` int(50) NOT NULL,
+  `nota` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `entrega`
+--
+
+INSERT INTO `entrega` (`identrega`, `Idalquiler`, `fechahora`, `persona_recibe`, `cedula_persona`, `kilometraje`, `nota`) VALUES
+(2, 0, '2023-05-26 16:38:00', 'wanda lebron', '2323', 400, 'tiene solamente un foco malo'),
+(3, 12, '2023-05-23 19:53:00', 'wandy nuñez', '56565', 4555, 'todo bien'),
+(4, 13, '2023-05-10 16:58:00', 'wawa', 'wa', 33, 'bien');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `seccion`
 --
 
@@ -539,7 +564,7 @@ CREATE TABLE `seccion` (
 
 INSERT INTO `seccion` (`token`, `usuarioid`, `fechavalida`) VALUES
 ('brian2123', 'brian2', '2023-04-14 16:44:47'),
-('wandy123', 'wandy', '2023-05-20 01:31:25');
+('wandy123', 'wandy', '2023-05-31 01:31:25');
 
 -- --------------------------------------------------------
 
@@ -602,8 +627,8 @@ CREATE TABLE `vehiculo` (
   `tipo` int(11) DEFAULT NULL,
   `ano` int(11) DEFAULT NULL,
   `placa` varchar(45) DEFAULT NULL,
-  `precio` double NOT NULL,
-  `imagen` blob DEFAULT NULL,
+  `precio` double DEFAULT NULL,
+  `imagen` varchar(255) DEFAULT NULL,
   `estado` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -641,6 +666,12 @@ ALTER TABLE `cliente`
   ADD PRIMARY KEY (`idcliente`);
 
 --
+-- Indices de la tabla `entrega`
+--
+ALTER TABLE `entrega`
+  ADD PRIMARY KEY (`identrega`);
+
+--
 -- Indices de la tabla `seccion`
 --
 ALTER TABLE `seccion`
@@ -673,13 +704,19 @@ ALTER TABLE `vehiculo`
 -- AUTO_INCREMENT de la tabla `alquiler`
 --
 ALTER TABLE `alquiler`
-  MODIFY `idalquiler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idalquiler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `entrega`
+--
+ALTER TABLE `entrega`
+  MODIFY `identrega` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tipovehiculo`
@@ -691,7 +728,7 @@ ALTER TABLE `tipovehiculo`
 -- AUTO_INCREMENT de la tabla `vehiculo`
 --
 ALTER TABLE `vehiculo`
-  MODIFY `idvehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `idvehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- Restricciones para tablas volcadas
