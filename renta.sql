@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-05-2023 a las 23:03:05
+-- Tiempo de generación: 02-06-2023 a las 22:57:28
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -166,7 +166,7 @@ CREATE TABLE `pma__recent` (
 --
 
 INSERT INTO `pma__recent` (`username`, `tables`) VALUES
-('root', '[{\"db\":\"renta\",\"table\":\"alquiler\"},{\"db\":\"renta\",\"table\":\"entrega\"},{\"db\":\"renta\",\"table\":\"vehiculo\"},{\"db\":\"renta\",\"table\":\"seccion\"},{\"db\":\"renta\",\"table\":\"usuario\"},{\"db\":\"renta\",\"table\":\"cliente\"},{\"db\":\"renta\",\"table\":\"tipovehiculo\"}]');
+('root', '[{\"db\":\"renta\",\"table\":\"alquiler\"},{\"db\":\"renta\",\"table\":\"seccion\"},{\"db\":\"renta\",\"table\":\"usuario\"},{\"db\":\"renta\",\"table\":\"entrega\"},{\"db\":\"renta\",\"table\":\"vehiculo\"},{\"db\":\"renta\",\"table\":\"cliente\"},{\"db\":\"renta\",\"table\":\"tipovehiculo\"}]');
 
 -- --------------------------------------------------------
 
@@ -273,7 +273,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2023-05-26 21:03:01', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"es\"}');
+('root', '2023-06-02 20:57:26', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"es\",\"NavigationWidth\":0}');
 
 -- --------------------------------------------------------
 
@@ -478,14 +478,15 @@ CREATE TABLE `alquiler` (
   `usuario` varchar(45) DEFAULT NULL,
   `idcliente` int(30) NOT NULL,
   `nombrecliente` varchar(40) NOT NULL,
-  `fecha` date DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   `idvehiculo` int(11) DEFAULT NULL,
+  `seguro` varchar(10) DEFAULT NULL,
   `precio` double DEFAULT NULL,
-  `fechaini` date DEFAULT NULL,
-  `fechafin` date DEFAULT NULL,
+  `fechaini` datetime DEFAULT NULL,
+  `fechafin` datetime DEFAULT NULL,
   `dias` int(11) DEFAULT NULL,
   `total` double DEFAULT NULL,
-  `entregado` int(1) DEFAULT 1,
+  `entregado` int(1) DEFAULT 0,
   `recibido` int(1) DEFAULT NULL,
   `estado` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -494,10 +495,15 @@ CREATE TABLE `alquiler` (
 -- Volcado de datos para la tabla `alquiler`
 --
 
-INSERT INTO `alquiler` (`idalquiler`, `usuario`, `idcliente`, `nombrecliente`, `fecha`, `idvehiculo`, `precio`, `fechaini`, `fechafin`, `dias`, `total`, `entregado`, `recibido`, `estado`) VALUES
-(12, 'wandy', 2, 'Aqfa', '2023-05-19', 64, 88, '2023-05-19', '2023-05-22', 4, 352, 0, NULL, 1),
-(13, 'wandy', 1, 'Hola', '2023-05-19', 47, 55, '2023-05-19', '2023-05-22', 4, 220, 0, NULL, 1),
-(14, 'wandy', 1, 'Hola', '2023-05-19', 47, 55, '2023-05-23', '2023-05-24', 2, 110, 0, NULL, 1);
+INSERT INTO `alquiler` (`idalquiler`, `usuario`, `idcliente`, `nombrecliente`, `fecha`, `idvehiculo`, `seguro`, `precio`, `fechaini`, `fechafin`, `dias`, `total`, `entregado`, `recibido`, `estado`) VALUES
+(12, 'wandy', 2, 'Aqfa', '2023-05-19 00:00:00', 64, '0', 88, '2023-05-19 00:00:00', '2023-05-22 00:00:00', 4, 352, 1, NULL, 1),
+(13, 'wandy', 1, 'Hola', '2023-05-19 00:00:00', 47, '0', 55, '2023-05-19 00:00:00', '2023-05-22 00:00:00', 4, 220, 0, NULL, 1),
+(14, 'wandy', 1, 'Hola', '2023-05-19 00:00:00', 47, '0', 55, '2023-05-23 00:00:00', '2023-05-24 00:00:00', 2, 110, 0, NULL, 1),
+(18, 'wandy', 2, 'Aqfa', '2023-06-01 00:00:00', 48, '0', 44, '2023-06-01 00:00:00', '2023-06-23 00:00:00', 23, 1012, 0, NULL, 1),
+(19, 'wandy', 1, 'Hola', '2023-06-02 13:47:00', 65, 'si', 85, '2023-06-02 13:47:00', '2023-06-03 13:47:00', 2, 190, 0, NULL, 1),
+(20, 'wandy', 3, 'Zd', '2023-06-02 13:47:00', 62, 'no', 56, '2023-06-02 13:47:00', '2023-06-10 13:47:00', 9, 504, 0, NULL, 1),
+(21, 'wandy', 2, 'Aqfa', '2023-06-02 13:47:00', 63, 'si', 50, '2023-06-02 13:47:00', '2023-06-10 13:47:00', 9, 470, 0, NULL, 1),
+(22, 'wandy', 1, 'Hola', '2023-06-02 14:22:00', 64, 'normal', 88, '2023-06-02 14:22:00', '2023-06-03 14:22:00', 2, 201, 0, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -537,15 +543,6 @@ CREATE TABLE `entrega` (
   `nota` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `entrega`
---
-
-INSERT INTO `entrega` (`identrega`, `Idalquiler`, `fechahora`, `persona_recibe`, `cedula_persona`, `kilometraje`, `nota`) VALUES
-(2, 0, '2023-05-26 16:38:00', 'wanda lebron', '2323', 400, 'tiene solamente un foco malo'),
-(3, 12, '2023-05-23 19:53:00', 'wandy nuñez', '56565', 4555, 'todo bien'),
-(4, 13, '2023-05-10 16:58:00', 'wawa', 'wa', 33, 'bien');
-
 -- --------------------------------------------------------
 
 --
@@ -564,7 +561,7 @@ CREATE TABLE `seccion` (
 
 INSERT INTO `seccion` (`token`, `usuarioid`, `fechavalida`) VALUES
 ('brian2123', 'brian2', '2023-04-14 16:44:47'),
-('wandy123', 'wandy', '2023-05-31 01:31:25');
+('wandy123', 'wandy', '2023-06-30 17:34:05');
 
 -- --------------------------------------------------------
 
@@ -646,7 +643,8 @@ INSERT INTO `vehiculo` (`idvehiculo`, `marca`, `modelo`, `color`, `asiento`, `co
 (65, 'Th', 'Fghf', 'Tfdth', 4, 'Gasoil', 3, 2008, 'Fhfd', 85, NULL, 1),
 (66, 'Fdg', 'Df', 'G', 2, 'Gasolina', 4, 2005, 'Fg', 85, NULL, 1),
 (67, 'Ww', 'Ww', 'Ww', 2, 'Gasolina', 3, 2008, 'Ww', 7, NULL, 1),
-(68, 'Dfv', 'Sdv', 'Dasfv', 2, 'Gasoil', 3, 2008, 'Dsfv', 78.9, NULL, 0);
+(68, 'Dfv', 'Sdv', 'Dasfv', 2, 'Gasoil', 3, 2008, 'Dsfv', 78.9, NULL, 0),
+(72, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '144538-carro-deportivo.png', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -704,7 +702,7 @@ ALTER TABLE `vehiculo`
 -- AUTO_INCREMENT de la tabla `alquiler`
 --
 ALTER TABLE `alquiler`
-  MODIFY `idalquiler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idalquiler` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `cliente`
@@ -716,7 +714,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `entrega`
 --
 ALTER TABLE `entrega`
-  MODIFY `identrega` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `identrega` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `tipovehiculo`
@@ -728,7 +726,7 @@ ALTER TABLE `tipovehiculo`
 -- AUTO_INCREMENT de la tabla `vehiculo`
 --
 ALTER TABLE `vehiculo`
-  MODIFY `idvehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `idvehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- Restricciones para tablas volcadas
