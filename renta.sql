@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-06-2023 a las 22:57:28
+-- Tiempo de generación: 09-06-2023 a las 23:42:39
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -273,7 +273,7 @@ CREATE TABLE `pma__userconfig` (
 --
 
 INSERT INTO `pma__userconfig` (`username`, `timevalue`, `config_data`) VALUES
-('root', '2023-06-02 20:57:26', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"es\",\"NavigationWidth\":0}');
+('root', '2023-06-09 21:42:36', '{\"Console\\/Mode\":\"collapse\",\"lang\":\"es\",\"NavigationWidth\":0}');
 
 -- --------------------------------------------------------
 
@@ -540,7 +540,8 @@ CREATE TABLE `entrega` (
   `persona_recibe` varchar(50) NOT NULL,
   `cedula_persona` varchar(20) NOT NULL,
   `kilometraje` int(50) NOT NULL,
-  `nota` varchar(200) NOT NULL
+  `nota` varchar(200) NOT NULL,
+  `estado` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -634,9 +635,9 @@ CREATE TABLE `vehiculo` (
 --
 
 INSERT INTO `vehiculo` (`idvehiculo`, `marca`, `modelo`, `color`, `asiento`, `combustible`, `tipo`, `ano`, `placa`, `precio`, `imagen`, `estado`) VALUES
-(47, 'Toyota', 'Banglades', 'Gris', 5, 'Gasolina', 1, 2022, 'H28888', 55, NULL, 1),
-(48, 'Honda', 'logo', 'blanco', 4, 'Gasolina', 1, 2022, 'A656530', 44, NULL, 1),
-(61, 'Tesla', 'xr33', 'blanco', 4, 'Electrico', 5, 2022, 'xvxffxggfcff', 76, NULL, 1),
+(47, 'Toyota', 'Banglades', 'Gris', 5, 'Gasolina', 1, 2022, 'H28888', 55, '211529-carro-deportivo.png', 1),
+(48, 'Honda', 'logo', 'blanco', 4, 'Gasolina', 1, 2022, 'A656530', 44, '212111-carro-deportivo.png', 1),
+(61, 'Tesla', 'xr33', 'blanco', 4, 'Electrico', 5, 2022, 'xvxffxggfcff', 76, '212220-carro-deportivo.png', 1),
 (62, 'toyota', 'asdf78', 'rojo', 5, 'Gas', 2, 2006, 'a382', 56, NULL, 1),
 (63, 'Toyota', 'Camry', 'Rojo', 4, 'Gasolina', 2, 2018, 'VHGVhsw2', 50, NULL, 1),
 (64, 'Casd', 'Fsdf', 'Aerg', 4, 'Gasolina', 6, 2010, 'Ergre', 88, NULL, 1),
@@ -644,7 +645,7 @@ INSERT INTO `vehiculo` (`idvehiculo`, `marca`, `modelo`, `color`, `asiento`, `co
 (66, 'Fdg', 'Df', 'G', 2, 'Gasolina', 4, 2005, 'Fg', 85, NULL, 1),
 (67, 'Ww', 'Ww', 'Ww', 2, 'Gasolina', 3, 2008, 'Ww', 7, NULL, 1),
 (68, 'Dfv', 'Sdv', 'Dasfv', 2, 'Gasoil', 3, 2008, 'Dsfv', 78.9, NULL, 0),
-(72, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '144538-carro-deportivo.png', NULL);
+(77, 'Toyota', 'XX', 'Rojo', 4, 'Gasolina', 3, 2021, 'A142415', 14250, '212352-logo14.jpg', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -726,7 +727,7 @@ ALTER TABLE `tipovehiculo`
 -- AUTO_INCREMENT de la tabla `vehiculo`
 --
 ALTER TABLE `vehiculo`
-  MODIFY `idvehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `idvehiculo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- Restricciones para tablas volcadas
