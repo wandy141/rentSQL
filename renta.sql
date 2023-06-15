@@ -25,10 +25,12 @@ DROP TABLE IF EXISTS `alquiler`;
 CREATE TABLE `alquiler` (
   `idalquiler` int NOT NULL AUTO_INCREMENT,
   `usuario` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `lugar_entrega` varchar(105) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `lugar_recibir` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `idcliente` int NOT NULL,
-  `nombrecliente` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nombrecliente` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
-  `idvehiculo` int DEFAULT NULL,
+  `idvehiculo` int NOT NULL,
   `seguro` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `precio` double DEFAULT NULL,
   `fechaini` datetime DEFAULT NULL,
@@ -40,6 +42,8 @@ CREATE TABLE `alquiler` (
   `estado` int DEFAULT NULL,
   PRIMARY KEY (`idalquiler`),
   KEY `fk_vehiculo` (`idvehiculo`),
+  KEY `fk_cliente_idx` (`idcliente`),
+  CONSTRAINT `fk_cliente` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`),
   CONSTRAINT `fk_vehiculo` FOREIGN KEY (`idvehiculo`) REFERENCES `vehiculo` (`idvehiculo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -50,7 +54,7 @@ CREATE TABLE `alquiler` (
 
 LOCK TABLES `alquiler` WRITE;
 /*!40000 ALTER TABLE `alquiler` DISABLE KEYS */;
-INSERT INTO `alquiler` VALUES (12,'wandy',2,'Aqfa','2023-05-19 00:00:00',64,'0',88,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,352,1,NULL,1),(13,'wandy',1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,220,1,NULL,1),(14,'wandy',1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-23 00:00:00','2023-05-24 00:00:00',2,110,0,NULL,1),(18,'wandy',2,'Aqfa','2023-06-01 00:00:00',48,'0',44,'2023-06-01 00:00:00','2023-06-23 00:00:00',23,1012,1,1,2),(19,'wandy',1,'Hola','2023-06-02 13:47:00',65,'si',85,'2023-06-02 13:47:00','2023-06-03 13:47:00',2,190,0,NULL,1),(20,'wandy',3,'Zd','2023-06-02 13:47:00',62,'no',56,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,504,0,NULL,1),(21,'wandy',2,'Aqfa','2023-06-02 13:47:00',63,'si',50,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,470,0,NULL,1),(22,'wandy',1,'Hola','2023-06-02 14:22:00',64,'normal',88,'2023-06-02 14:22:00','2023-06-03 14:22:00',2,201,0,NULL,1),(23,'wandy',1,'Hola','2023-06-14 08:01:00',47,'normal',55,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,55,0,NULL,1),(24,'wandy',1,'Hola','2023-06-14 08:01:00',48,'normal',44,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,44,0,NULL,1),(25,'wandy',1,'Hola','2023-06-15 08:33:00',62,'normal',56,'2023-06-15 08:33:00','2023-06-16 08:33:00',1,56,0,NULL,1);
+INSERT INTO `alquiler` VALUES (12,'wandy',NULL,NULL,2,'Aqfa','2023-05-19 00:00:00',64,'0',88,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,352,1,NULL,1),(13,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,220,1,NULL,1),(14,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-23 00:00:00','2023-05-24 00:00:00',2,110,0,NULL,1),(18,'wandy',NULL,NULL,2,'Aqfa','2023-06-01 00:00:00',48,'0',44,'2023-06-01 00:00:00','2023-06-23 00:00:00',23,1012,1,1,2),(19,'wandy',NULL,NULL,1,'Hola','2023-06-02 13:47:00',65,'si',85,'2023-06-02 13:47:00','2023-06-03 13:47:00',2,190,0,NULL,1),(20,'wandy',NULL,NULL,3,'Zd','2023-06-02 13:47:00',62,'no',56,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,504,0,NULL,1),(21,'wandy',NULL,NULL,2,'Aqfa','2023-06-02 13:47:00',63,'si',50,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,470,0,NULL,1),(22,'wandy',NULL,NULL,1,'Hola','2023-06-02 14:22:00',64,'normal',88,'2023-06-02 14:22:00','2023-06-03 14:22:00',2,201,0,NULL,1),(23,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',47,'normal',55,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,55,0,NULL,1),(24,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',48,'normal',44,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,44,0,NULL,1),(25,'wandy',NULL,NULL,1,'Hola','2023-06-15 08:33:00',62,'normal',56,'2023-06-15 08:33:00','2023-06-16 08:33:00',1,56,0,NULL,1);
 /*!40000 ALTER TABLE `alquiler` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,13 +96,15 @@ DROP TABLE IF EXISTS `entrega`;
 CREATE TABLE `entrega` (
   `identrega` int NOT NULL AUTO_INCREMENT,
   `idalquiler` int NOT NULL,
-  `fechahora` datetime NOT NULL,
-  `persona_recibe` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `cedula_persona` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `kilometraje` int NOT NULL,
-  `nota` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `fechahora` datetime DEFAULT NULL,
+  `persona_recibe` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `cedula_persona` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `kilometraje` int DEFAULT NULL,
+  `nota` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `estado` int DEFAULT '1',
-  PRIMARY KEY (`identrega`)
+  PRIMARY KEY (`identrega`),
+  KEY `fk_alquiler_idx` (`idalquiler`),
+  CONSTRAINT `fk_alquiler` FOREIGN KEY (`idalquiler`) REFERENCES `alquiler` (`idalquiler`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -110,30 +116,6 @@ LOCK TABLES `entrega` WRITE;
 /*!40000 ALTER TABLE `entrega` DISABLE KEYS */;
 INSERT INTO `entrega` VALUES (7,18,'2023-06-16 17:24:00','wandy','234',23,'jart',1),(8,13,'2023-06-16 09:01:00','hola papa','77688',876,'el carro tiene todo completo',1);
 /*!40000 ALTER TABLE `entrega` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `entregas`
---
-
-DROP TABLE IF EXISTS `entregas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `entregas` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `entregas`
---
-
-LOCK TABLES `entregas` WRITE;
-/*!40000 ALTER TABLE `entregas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `entregas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -150,7 +132,8 @@ CREATE TABLE `mantenimiento` (
   `costo_extra` double DEFAULT NULL,
   `comentario` varchar(100) DEFAULT NULL,
   `estado` int DEFAULT '1',
-  PRIMARY KEY (`idmantenimiento`)
+  PRIMARY KEY (`idmantenimiento`),
+  KEY `fk_recibir_idx` (`id_recibir`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -178,7 +161,10 @@ CREATE TABLE `recibir` (
   `NombreCli` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `FechHoraDev` datetime DEFAULT NULL,
   `Comentarios` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  PRIMARY KEY (`idrecibir`)
+  PRIMARY KEY (`idrecibir`),
+  KEY `fk_cliente_idx` (`id_cliente`),
+  KEY `fk_clientes_idx` (`idrecibir`,`id_cliente`),
+  KEY `fk_alquiler_idx` (`id_alquiler`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -239,7 +225,7 @@ CREATE TABLE `seccion` (
 
 LOCK TABLES `seccion` WRITE;
 /*!40000 ALTER TABLE `seccion` DISABLE KEYS */;
-INSERT INTO `seccion` VALUES ('brian2123','brian2','2023-04-14 16:44:47'),('wandy123','wandy','2023-06-30 17:34:05');
+INSERT INTO `seccion` VALUES ('wandy123','wandy','2024-04-14 16:44:47');
 /*!40000 ALTER TABLE `seccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,4 +350,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-15 12:48:32
+-- Dump completed on 2023-06-15 13:04:20
