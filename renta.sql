@@ -42,10 +42,8 @@ CREATE TABLE `alquiler` (
   `estado` int DEFAULT NULL,
   PRIMARY KEY (`idalquiler`),
   KEY `fk_vehiculo` (`idvehiculo`),
-  KEY `fk_cliente_idx` (`idcliente`),
-  CONSTRAINT `fk_cliente` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`),
   CONSTRAINT `fk_vehiculo` FOREIGN KEY (`idvehiculo`) REFERENCES `vehiculo` (`idvehiculo`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,7 +52,7 @@ CREATE TABLE `alquiler` (
 
 LOCK TABLES `alquiler` WRITE;
 /*!40000 ALTER TABLE `alquiler` DISABLE KEYS */;
-INSERT INTO `alquiler` VALUES (12,'wandy',NULL,NULL,2,'Aqfa','2023-05-19 00:00:00',64,'0',88,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,352,1,NULL,1),(13,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,220,1,NULL,1),(14,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-23 00:00:00','2023-05-24 00:00:00',2,110,0,NULL,1),(18,'wandy',NULL,NULL,2,'Aqfa','2023-06-01 00:00:00',48,'0',44,'2023-06-01 00:00:00','2023-06-23 00:00:00',23,1012,1,1,2),(19,'wandy',NULL,NULL,1,'Hola','2023-06-02 13:47:00',65,'si',85,'2023-06-02 13:47:00','2023-06-03 13:47:00',2,190,0,NULL,1),(20,'wandy',NULL,NULL,3,'Zd','2023-06-02 13:47:00',62,'no',56,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,504,0,NULL,1),(21,'wandy',NULL,NULL,2,'Aqfa','2023-06-02 13:47:00',63,'si',50,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,470,0,NULL,1),(22,'wandy',NULL,NULL,1,'Hola','2023-06-02 14:22:00',64,'normal',88,'2023-06-02 14:22:00','2023-06-03 14:22:00',2,201,0,NULL,1),(23,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',47,'normal',55,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,55,0,NULL,1),(24,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',48,'normal',44,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,44,0,NULL,1),(25,'wandy',NULL,NULL,1,'Hola','2023-06-15 08:33:00',62,'normal',56,'2023-06-15 08:33:00','2023-06-16 08:33:00',1,56,0,NULL,1);
+INSERT INTO `alquiler` VALUES (12,'wandy',NULL,NULL,2,'Aqfa','2023-05-19 00:00:00',64,'0',88,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,352,1,NULL,1),(13,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,220,1,NULL,1),(14,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-23 00:00:00','2023-05-24 00:00:00',2,110,0,NULL,1),(18,'wandy',NULL,NULL,2,'Aqfa','2023-06-01 00:00:00',48,'0',44,'2023-06-01 00:00:00','2023-06-23 00:00:00',23,1012,1,1,2),(19,'wandy',NULL,NULL,1,'Hola','2023-06-02 13:47:00',65,'si',85,'2023-06-02 13:47:00','2023-06-03 13:47:00',2,190,0,NULL,1),(20,'wandy',NULL,NULL,3,'Zd','2023-06-02 13:47:00',62,'no',56,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,504,0,NULL,1),(21,'wandy',NULL,NULL,2,'Aqfa','2023-06-02 13:47:00',63,'si',50,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,470,0,NULL,1),(22,'wandy',NULL,NULL,1,'Hola','2023-06-02 14:22:00',64,'normal',88,'2023-06-02 14:22:00','2023-06-03 14:22:00',2,201,0,NULL,1),(23,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',47,'normal',55,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,55,0,NULL,1),(24,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',48,'normal',44,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,44,0,NULL,1),(25,'wandy',NULL,NULL,1,'Hola','2023-06-15 08:33:00',62,'normal',56,'2023-06-15 08:33:00','2023-06-16 08:33:00',1,56,0,NULL,1),(28,'wandy','en micasa','enmicasa',5,'wandy','2023-06-16 13:56:00',64,NULL,88,'2023-06-16 13:56:00','2023-06-17 13:56:00',2,40,0,NULL,0),(29,NULL,'en micasa','en la tuya',6,'wa','2023-06-16 15:19:00',63,NULL,50,'2023-06-17 15:19:00','2023-06-18 15:19:00',2,22,0,NULL,0),(30,'vh','vj',NULL,7,'wa','2023-06-16 15:40:00',47,NULL,55,'2023-06-23 15:40:00','2023-06-26 15:40:00',4,22,0,NULL,0),(31,'wandy','en micasa','enmicasa',8,'wandy','2023-06-16 15:49:00',62,NULL,56,'2023-06-17 15:49:00','2023-06-24 15:49:00',8,222,0,NULL,0),(32,NULL,'vhv',NULL,9,'uy','2023-02-16 15:53:00',63,NULL,50,'2023-06-12 15:53:00','2023-06-24 15:53:00',13,2222,0,NULL,0),(33,'sdcdcdc','yv','vygv',10,'xc','2023-06-16 16:00:00',47,NULL,55,'2023-06-16 16:00:00','2023-06-17 16:00:00',2,2222,0,NULL,0),(34,'vfv','yv','fv',11,NULL,'2023-06-16 16:03:00',77,NULL,14250,'2023-06-16 16:03:00','2023-06-17 16:03:00',2,555555,0,NULL,0),(35,'ub','gb','b',0,NULL,'2023-06-16 16:08:00',64,NULL,88,'2023-06-17 16:08:00','2023-06-19 16:08:00',3,7878,0,NULL,0),(36,NULL,'ug','hg hg',14,'ghb','2023-06-16 16:16:00',62,NULL,56,'2023-06-17 16:16:00','2023-06-18 16:16:00',2,5000,0,NULL,0);
 /*!40000 ALTER TABLE `alquiler` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -73,7 +71,7 @@ CREATE TABLE `cliente` (
   `direccion` varchar(455) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `telefono` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idcliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +80,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Hola','eoo','123321',NULL,NULL),(2,'Aqfa','asdfas','sdsad',NULL,NULL),(3,'Zd','sfcs','szcffs',NULL,NULL);
+INSERT INTO `cliente` VALUES (1,'Hola','eoo','123321',NULL,NULL),(2,'Aqfa','asdfas','sdsad',NULL,NULL),(3,'Zd','sfcs','szcffs',NULL,NULL),(4,'wa','wa','wa',NULL,NULL),(5,'wa','wa','wa',NULL,NULL),(6,'wandy','wandynl14@gmail.com','wa','wa','wa'),(7,'wa','wandynl14@gmail.com','1222','1222','1222'),(8,'wa','wa','wawa','wawa','wawa'),(9,'wandy','wa','2423','2423','2423'),(10,'uy','uyb','yv','yv','yv'),(11,'xc','sxc','dc','dc','dc'),(12,NULL,'gyvyt','vyvt','vyvt','vyvt'),(13,NULL,'ubu','buy','buy','buy'),(14,'ghb','gb','gbv','gbv','gbv');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,4 +348,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-15 13:04:20
+-- Dump completed on 2023-06-16 16:32:02
