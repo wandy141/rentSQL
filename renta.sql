@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `renta` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `renta`;
+-- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
 -- Host: localhost    Database: renta
 -- ------------------------------------------------------
--- Server version	8.0.33
+-- Server version	8.0.27
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,8 +27,8 @@ DROP TABLE IF EXISTS `alquiler`;
 CREATE TABLE `alquiler` (
   `idalquiler` int NOT NULL AUTO_INCREMENT,
   `usuario` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `lugar_entrega` varchar(105) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `lugar_recibir` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `lugar_entrega` varchar(105) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `lugar_recibir` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `idcliente` int NOT NULL,
   `nombrecliente` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `fecha` datetime DEFAULT NULL,
@@ -68,8 +70,8 @@ CREATE TABLE `cliente` (
   `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `correo` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `cedula` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `direccion` varchar(455) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `telefono` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `direccion` varchar(455) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `telefono` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idcliente`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -174,6 +176,32 @@ LOCK TABLES `recibir` WRITE;
 /*!40000 ALTER TABLE `recibir` DISABLE KEYS */;
 INSERT INTO `recibir` VALUES (1,18,7,'wandy','2023-06-14 08:28:00','waaw'),(2,18,7,'wandy','2023-06-15 18:38:00','se le daño la puerta'),(3,1,18,'lala','2023-06-16 10:38:00','bienn');
 /*!40000 ALTER TABLE `recibir` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `registro`
+--
+
+DROP TABLE IF EXISTS `registro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `registro` (
+  `idcliente` int NOT NULL AUTO_INCREMENT,
+  `nombreCom` varchar(45) DEFAULT NULL,
+  `correo` varchar(45) DEFAULT NULL,
+  `contraseña` varchar(45) DEFAULT NULL,
+  `confirmacionContra` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idcliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `registro`
+--
+
+LOCK TABLES `registro` WRITE;
+/*!40000 ALTER TABLE `registro` DISABLE KEYS */;
+/*!40000 ALTER TABLE `registro` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -338,6 +366,14 @@ LOCK TABLES `vehiculo` WRITE;
 INSERT INTO `vehiculo` VALUES (47,'Toyota','Banglades','Gris',5,'Gasolina',1,2022,'H28888',55,'211529-carro-deportivo.png',0,1),(48,'Honda','logo','blanco',4,'Gasolina',1,2022,'A656530',44,'212111-carro-deportivo.png',0,2),(61,'Tesla','xr33','blanco',4,'Electrico',5,2022,'xvxffxggfcff',76,'212220-carro-deportivo.png',0,1),(62,'toyota','asdf78','rojo',5,'Gas',2,2006,'a382',56,'182020-sonata_2022.jpg',0,1),(63,'Toyota','Camry','Rojo',4,'Gasolina',2,2018,'VHGVhsw2',50,'crv.jpg',0,1),(64,'Casd','Fsdf','Aerg',4,'Gasolina',6,2010,'Ergre',88,'crv.jpg',0,1),(65,'Th','Fghf','Tfdth',4,'Gasoil',3,2008,'Fhfd',85,'crv.jpg',0,1),(66,'Fdg','Df','G',2,'Gasolina',4,2005,'Fg',85,'crv2.jpg',0,1),(67,'Ww','Ww','Ww',2,'Gasolina',3,2008,'Ww',7,'crv2.jpg',0,1),(68,'Dfv','Sdv','Dasfv',2,'Gasoil',3,2008,'Dsfv',78.9,'crv.jpg',0,0),(77,'Toyota','XX','Rojo',4,'Gasolina',3,2021,'A142415',14250,'173221-sonata_2022.jpg',0,1);
 /*!40000 ALTER TABLE `vehiculo` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'renta'
+--
+
+--
+-- Dumping routines for database 'renta'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -348,4 +384,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-16 16:32:02
+-- Dump completed on 2023-06-17 14:55:48
