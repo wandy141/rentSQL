@@ -38,12 +38,12 @@ CREATE TABLE `alquiler` (
   `dias` int DEFAULT NULL,
   `total` double DEFAULT NULL,
   `entregado` int DEFAULT '0',
-  `recibido` int DEFAULT NULL,
-  `estado` int DEFAULT NULL,
+  `recibido` int DEFAULT '0',
+  `estado` int DEFAULT '1',
   PRIMARY KEY (`idalquiler`),
   KEY `fk_vehiculo` (`idvehiculo`),
   CONSTRAINT `fk_vehiculo` FOREIGN KEY (`idvehiculo`) REFERENCES `vehiculo` (`idvehiculo`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +52,7 @@ CREATE TABLE `alquiler` (
 
 LOCK TABLES `alquiler` WRITE;
 /*!40000 ALTER TABLE `alquiler` DISABLE KEYS */;
-INSERT INTO `alquiler` VALUES (12,'wandy',NULL,NULL,2,'Aqfa','2023-05-19 00:00:00',64,'0',88,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,352,1,NULL,1),(13,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,220,1,NULL,1),(14,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-23 00:00:00','2023-05-24 00:00:00',2,110,0,NULL,1),(18,'wandy',NULL,NULL,2,'Aqfa','2023-06-01 00:00:00',48,'0',44,'2023-06-01 00:00:00','2023-06-23 00:00:00',23,1012,1,1,2),(19,'wandy',NULL,NULL,1,'Hola','2023-06-02 13:47:00',65,'si',85,'2023-06-02 13:47:00','2023-06-03 13:47:00',2,190,0,NULL,1),(20,'wandy',NULL,NULL,3,'Zd','2023-06-02 13:47:00',62,'no',56,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,504,0,NULL,1),(21,'wandy',NULL,NULL,2,'Aqfa','2023-06-02 13:47:00',63,'si',50,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,470,0,NULL,1),(22,'wandy',NULL,NULL,1,'Hola','2023-06-02 14:22:00',64,'normal',88,'2023-06-02 14:22:00','2023-06-03 14:22:00',2,201,0,NULL,1),(23,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',47,'normal',55,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,55,0,NULL,1),(24,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',48,'normal',44,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,44,0,NULL,1),(25,'wandy',NULL,NULL,1,'Hola','2023-06-15 08:33:00',62,'normal',56,'2023-06-15 08:33:00','2023-06-16 08:33:00',1,56,0,NULL,1),(28,'wandy','en micasa','enmicasa',5,'wandy','2023-06-16 13:56:00',64,NULL,88,'2023-06-16 13:56:00','2023-06-17 13:56:00',2,40,0,NULL,0),(29,NULL,'en micasa','en la tuya',6,'wa','2023-06-16 15:19:00',63,NULL,50,'2023-06-17 15:19:00','2023-06-18 15:19:00',2,22,0,NULL,0),(30,'vh','vj',NULL,7,'wa','2023-06-16 15:40:00',47,NULL,55,'2023-06-23 15:40:00','2023-06-26 15:40:00',4,22,0,NULL,0),(31,'wandy','en micasa','enmicasa',8,'wandy','2023-06-16 15:49:00',62,NULL,56,'2023-06-17 15:49:00','2023-06-24 15:49:00',8,222,0,NULL,0),(32,NULL,'vhv',NULL,9,'uy','2023-02-16 15:53:00',63,NULL,50,'2023-06-12 15:53:00','2023-06-24 15:53:00',13,2222,0,NULL,0),(33,'sdcdcdc','yv','vygv',10,'xc','2023-06-16 16:00:00',47,NULL,55,'2023-06-16 16:00:00','2023-06-17 16:00:00',2,2222,0,NULL,0),(34,'vfv','yv','fv',11,NULL,'2023-06-16 16:03:00',77,NULL,14250,'2023-06-16 16:03:00','2023-06-17 16:03:00',2,555555,0,NULL,0),(35,'ub','gb','b',0,NULL,'2023-06-16 16:08:00',64,NULL,88,'2023-06-17 16:08:00','2023-06-19 16:08:00',3,7878,0,NULL,0),(36,NULL,'ug','hg hg',14,'ghb','2023-06-16 16:16:00',62,NULL,56,'2023-06-17 16:16:00','2023-06-18 16:16:00',2,5000,0,NULL,0);
+INSERT INTO `alquiler` VALUES (12,'wandy',NULL,NULL,2,'Aqfa','2023-05-19 00:00:00',64,'0',88,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,352,1,NULL,1),(13,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-19 00:00:00','2023-05-22 00:00:00',4,220,1,NULL,1),(14,'wandy',NULL,NULL,1,'Hola','2023-05-19 00:00:00',47,'0',55,'2023-05-23 00:00:00','2023-05-24 00:00:00',2,110,0,NULL,1),(18,'wandy',NULL,NULL,2,'Aqfa','2023-06-01 00:00:00',48,'0',44,'2023-06-01 00:00:00','2023-06-23 00:00:00',23,1012,1,1,2),(19,'wandy',NULL,NULL,1,'Hola','2023-06-02 13:47:00',65,'si',85,'2023-06-02 13:47:00','2023-06-03 13:47:00',2,190,0,NULL,1),(20,'wandy',NULL,NULL,3,'Zd','2023-06-02 13:47:00',62,'no',56,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,504,0,NULL,1),(21,'wandy',NULL,NULL,2,'Aqfa','2023-06-02 13:47:00',63,'si',50,'2023-06-02 13:47:00','2023-06-10 13:47:00',9,470,0,NULL,1),(22,'wandy',NULL,NULL,1,'Hola','2023-06-02 14:22:00',64,'normal',88,'2023-06-02 14:22:00','2023-06-03 14:22:00',2,201,0,NULL,1),(23,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',47,'normal',55,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,55,0,NULL,1),(24,'wandy',NULL,NULL,1,'Hola','2023-06-14 08:01:00',48,'normal',44,'2023-06-14 08:01:00','2023-06-15 08:01:00',1,44,0,NULL,1),(25,'wandy',NULL,NULL,1,'Hola','2023-06-15 08:33:00',62,'normal',56,'2023-06-15 08:33:00','2023-06-16 08:33:00',1,56,0,NULL,1),(28,'wandy','en micasa','enmicasa',5,'wandy','2023-06-16 13:56:00',64,NULL,88,'2023-06-16 13:56:00','2023-06-17 13:56:00',2,40,0,NULL,0),(29,NULL,'en micasa','en la tuya',6,'wa','2023-06-16 15:19:00',63,NULL,50,'2023-06-17 15:19:00','2023-06-18 15:19:00',2,22,0,NULL,0),(30,'vh','vj',NULL,7,'wa','2023-06-16 15:40:00',47,NULL,55,'2023-06-23 15:40:00','2023-06-26 15:40:00',4,22,0,NULL,0),(31,'wandy','en micasa','enmicasa',8,'wandy','2023-06-16 15:49:00',62,NULL,56,'2023-06-17 15:49:00','2023-06-24 15:49:00',8,222,0,NULL,0),(32,NULL,'vhv',NULL,9,'uy','2023-02-16 15:53:00',63,NULL,50,'2023-06-12 15:53:00','2023-06-24 15:53:00',13,2222,0,NULL,0),(33,'sdcdcdc','yv','vygv',10,'xc','2023-06-16 16:00:00',47,NULL,55,'2023-06-16 16:00:00','2023-06-17 16:00:00',2,2222,0,NULL,0),(34,'vfv','yv','fv',11,NULL,'2023-06-16 16:03:00',77,NULL,14250,'2023-06-16 16:03:00','2023-06-17 16:03:00',2,555555,0,NULL,0),(35,'ub','gb','b',0,NULL,'2023-06-16 16:08:00',64,NULL,88,'2023-06-17 16:08:00','2023-06-19 16:08:00',3,7878,0,NULL,0),(36,NULL,'ug','hg hg',14,'ghb','2023-06-16 16:16:00',62,NULL,56,'2023-06-17 16:16:00','2023-06-18 16:16:00',2,5000,0,NULL,0),(37,NULL,'al lau','de micasa',19,'ramon orlado','2023-06-17 12:41:00',64,'normal',88,'2023-06-21 12:37:00','2023-06-22 12:37:00',2,176,0,0,1),(38,'wandy',NULL,NULL,20,'waaw','2023-06-17 21:22:00',47,'normal',55,NULL,NULL,0,0,0,0,1);
 /*!40000 ALTER TABLE `alquiler` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -70,8 +70,9 @@ CREATE TABLE `cliente` (
   `cedula` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `direccion` varchar(455) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `telefono` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nacionalidad` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idcliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -80,7 +81,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'Hola','eoo','123321',NULL,NULL),(2,'Aqfa','asdfas','sdsad',NULL,NULL),(3,'Zd','sfcs','szcffs',NULL,NULL),(4,'wa','wa','wa',NULL,NULL),(5,'wa','wa','wa',NULL,NULL),(6,'wandy','wandynl14@gmail.com','wa','wa','wa'),(7,'wa','wandynl14@gmail.com','1222','1222','1222'),(8,'wa','wa','wawa','wawa','wawa'),(9,'wandy','wa','2423','2423','2423'),(10,'uy','uyb','yv','yv','yv'),(11,'xc','sxc','dc','dc','dc'),(12,NULL,'gyvyt','vyvt','vyvt','vyvt'),(13,NULL,'ubu','buy','buy','buy'),(14,'ghb','gb','gbv','gbv','gbv');
+INSERT INTO `cliente` VALUES (1,'Hola','eoo','123321',NULL,NULL,NULL),(2,'Aqfa','asdfas','sdsad',NULL,NULL,NULL),(3,'Zd','sfcs','szcffs',NULL,NULL,NULL),(4,'wa','wa','wa',NULL,NULL,NULL),(5,'wa','wa','wa',NULL,NULL,NULL),(6,'wandy','wandynl14@gmail.com','wa','wa','wa',NULL),(7,'wa','wandynl14@gmail.com','1222','1222','1222',NULL),(8,'wa','wa','wawa','wawa','wawa',NULL),(9,'wandy','wa','2423','2423','2423',NULL),(10,'uy','uyb','yv','yv','yv',NULL),(11,'xc','sxc','dc','dc','dc',NULL),(12,NULL,'gyvyt','vyvt','vyvt','vyvt',NULL),(13,NULL,'ubu','buy','buy','buy',NULL),(14,'ghb','gb','gbv','gbv','gbv',NULL),(15,'Lindo','lido@gmail.com','65dd','monte afuera','809',NULL),(16,NULL,NULL,NULL,NULL,NULL,NULL),(17,NULL,NULL,NULL,NULL,NULL,NULL),(18,'ramon orlado','ramon@gmail.com','001','001','001','001'),(19,'ramon orlado','ramon@gmail.com','001','001','001','001'),(20,'waaw',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +164,7 @@ CREATE TABLE `recibir` (
   KEY `fk_cliente_idx` (`id_cliente`),
   KEY `fk_clientes_idx` (`idrecibir`,`id_cliente`),
   KEY `fk_alquiler_idx` (`id_alquiler`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,34 +173,8 @@ CREATE TABLE `recibir` (
 
 LOCK TABLES `recibir` WRITE;
 /*!40000 ALTER TABLE `recibir` DISABLE KEYS */;
-INSERT INTO `recibir` VALUES (1,18,7,'wandy','2023-06-14 08:28:00','waaw'),(2,18,7,'wandy','2023-06-15 18:38:00','se le daño la puerta'),(3,1,18,'lala','2023-06-16 10:38:00','bienn');
+INSERT INTO `recibir` VALUES (1,18,7,'wandy','2023-06-14 08:28:00','waaw'),(2,18,7,'wandy','2023-06-15 18:38:00','se le daño la puerta'),(3,1,18,'lala','2023-06-16 10:38:00','bienn'),(4,18,7,'wandy',NULL,'nitinod compi'),(5,18,7,'wandy','2023-06-24 19:02:00','nitinod compi');
 /*!40000 ALTER TABLE `recibir` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `rentas`
---
-
-DROP TABLE IF EXISTS `rentas`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `rentas` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `usuario` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `contraseña` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `rentas`
---
-
-LOCK TABLES `rentas` WRITE;
-/*!40000 ALTER TABLE `rentas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `rentas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -223,32 +198,8 @@ CREATE TABLE `seccion` (
 
 LOCK TABLES `seccion` WRITE;
 /*!40000 ALTER TABLE `seccion` DISABLE KEYS */;
-INSERT INTO `seccion` VALUES ('wandy123','wandy','2024-04-14 16:44:47');
+INSERT INTO `seccion` VALUES ('wandy123','wandy','2023-06-18 01:26:08');
 /*!40000 ALTER TABLE `seccion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tipo_vehiculos`
---
-
-DROP TABLE IF EXISTS `tipo_vehiculos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tipo_vehiculos` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tipo_vehiculos`
---
-
-LOCK TABLES `tipo_vehiculos` WRITE;
-/*!40000 ALTER TABLE `tipo_vehiculos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tipo_vehiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -288,6 +239,7 @@ CREATE TABLE `usuario` (
   `contrasena` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `nombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `estado` int DEFAULT NULL,
+  `usuariocol` varchar(45) COLLATE utf8mb4_general_ci DEFAULT '1',
   PRIMARY KEY (`usuarioid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -298,7 +250,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('wa','wa','wa',2),('wandy','123','wandy',1);
+INSERT INTO `usuario` VALUES ('wa','wa','wa',2,'1'),('wandy','123','wandy',1,'1');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,4 +300,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-16 16:32:02
+-- Dump completed on 2023-06-19  9:55:28
